@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native'
+import { Dimensions, StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native'
 const Flatlist = () => {
     const [MaSV, setMaSV] = useState();
     const [SuaMaSV, setSuaMaSV] = useState();
@@ -113,6 +113,7 @@ const Flatlist = () => {
 }
 
 export default Flatlist
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     inputType: {
