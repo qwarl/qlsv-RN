@@ -20,9 +20,9 @@ const Checklogin = () => {
     }
     return (
         <View style={styles.container}>
-            
-            <TextInput style={styles.inputType} placeholder='User name' onChangeText={(usN) => setUserName(usN)} />
-            <TextInput style={styles.inputType} placeholder='Password' onChangeText={(pw) => setPassword(pw)} />
+            <Text style={styles.text_Login}>LOGIN</Text>
+            <TextInput style={styles.inputType}  placeholder='User name' onChangeText={(usN) => setUserName(usN)} />
+            <TextInput style={styles.inputType}  placeholder='Password' onChangeText={(pw) => setPassword(pw)} secureTextEntry={true}/>
             <TouchableOpacity  onPress={checklogin}  >
                 <View style={styles.loginButton}>
                     <Text style={styles.loginText}>LOGIN</Text>
@@ -55,5 +55,9 @@ const styles = StyleSheet.create({
     loginText: {
         color: 'white',
         fontSize: 20
+    },
+    text_Login:{
+        fontSize:24,
+        marginBottom:10
     }
 })
