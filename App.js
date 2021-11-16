@@ -1,13 +1,13 @@
 // import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View,StatusBar } from 'react-native';
-import Checklogin from './screens/Checklogin';
+import { StyleSheet, View, StatusBar } from 'react-native';
+import SignIn from './screens/SignIn';
 import Flatlist from './screens/Flatlist';
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <Text>Open up App.js to start working on your app!</Text> */}
-      {/* <Checklogin/> */}
+      {/* <SignIn /> */}
       <Flatlist />
       {/* <StatusBar style="auto" /> */}
     </View>
@@ -17,9 +17,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    // flex: 1,
+    flex: 1,
     backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
