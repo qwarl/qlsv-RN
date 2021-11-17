@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import { Dimensions, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import SignIn from './SignIn';
 
-const SignIn = ({navigation}) => {
+const SignUp = ({ navigation }) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const LoginButton = () => {
-        //     setLogin(
-        // if (userName == admin && passource $HOME/.bash_profilesword == admin) 
-        // { Alert.alert('Dang nhap thanh cong') }
-        //     else { Alert.alert('Dang nhap that bai') };
-        // )
+    const RegisterButton = () => {
+
         if (userName == '' || password == '') {
             ToastAndroid.show('Vui lòng không để trống username và password', ToastAndroid.SHORT);
         }
@@ -20,19 +17,19 @@ const SignIn = ({navigation}) => {
             ToastAndroid.show('Sai tài khoản hoặc mật khẩu', ToastAndroid.SHORT);
         }
     }
-    const SignUpButton =()=>{
-        navigation.navigate('Signup');
+    const SignInButton = () => {
+        navigation.navigate('Signin');
     }
     return (
         <View style={styles.container}>
-            <Text style={styles.text_Login}>Login Screen</Text>
+            <Text style={styles.text_Login}>Register Screen</Text>
             <TextInput style={styles.inputType} value={userName} placeholder='User name' onChangeText={(usN) => setUserName(usN)} />
             <TextInput style={styles.inputType} value={password} placeholder='Password' onChangeText={(pw) => setPassword(pw)} secureTextEntry={true} />
-            <TouchableOpacity onPress={LoginButton} style={styles.css_LoginButton}>
-                <Text style={styles.loginText}>LOGIN</Text>
+            <TouchableOpacity onPress={RegisterButton} style={styles.css_RegisterButton}>
+                <Text style={styles.registerText}>REGISTER</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={SignUpButton} style={styles.css_SignUpButton}>
-                <Text style={styles.SignUpText}>New user? Join here</Text>
+            <TouchableOpacity onPress={SignInButton} style={styles.css_SignInButton}>
+                <Text style={styles.SignInText}>Already have an account? Login</Text>
             </TouchableOpacity>
         </View>
 
@@ -40,7 +37,7 @@ const SignIn = ({navigation}) => {
     )
 }
 
-export default SignIn
+export default SignUp
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
@@ -48,7 +45,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    css_LoginButton: {
+    css_RegisterButton: {
         marginTop: 10,
         width: width / 2,
         height: height / 15,
@@ -60,7 +57,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         color: '#ffffff'
     },
-    loginText: {
+    registerText: {
         color: 'white',
         fontSize: 20
     },
@@ -78,10 +75,10 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginBottom: 10,
     },
-    css_SignUpButton: {
+    css_SignInButton: {
         marginTop: 15,
     },
-    SignUpText: {
+    SignInText: {
         fontSize: 20,
         color: '#6646ee',
     }

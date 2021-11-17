@@ -1,16 +1,27 @@
 // import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import SignIn from './screens/SignIn';
 import Flatlist from './screens/Flatlist';
+import SignUp from './screens/SignUp';
+const Stack=createStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <Text>Open up App.js to start working on your app!</Text> */}
-      {/* <SignIn /> */}
-      <Flatlist />
-      {/* <StatusBar style="auto" /> */}
-    </View>
+    // <View style={styles.container}>
+    //   {/* <Text>Open up App.js to start working on your app!</Text> */}
+    //   <SignIn />
+    //   {/* <Flatlist /> */}
+    //   {/* <StatusBar style="auto" /> */}
+    // </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='SignIn' screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='Signin' component={SignIn} options={{ title: 'Login' }} />
+        <Stack.Screen name='Student' component={Flatlist} options={{ title: 'Student' }} />
+        <Stack.Screen name='Signup' component={SignUp} options={{ title: 'Register' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -20,6 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
 });
