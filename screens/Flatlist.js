@@ -3,11 +3,14 @@ import { Dimensions, StyleSheet, Text, View, TextInput, TouchableOpacity, FlatLi
 import Swipeout from 'react-native-swipeout';
 const Flatlist = () => {
     const [MaSV, setMaSV] = useState();
-    const [SuaMaSV, setSuaMaSV] = useState();
+
     const [Ten, setTen] = useState();
-    const [SuaTen, setSuaTen] = useState();
+
     const [Lop, setLop] = useState();
+    const [SuaMaSV, setSuaMaSV] = useState();
     const [SuaLop, setSuaLop] = useState();
+    const [SuaTen, setSuaTen] = useState();
+
     const [EditDialog, setEditDialog] = useState(false);
     const [SinhVien, setSinhVien] = useState([{
         maSV: 'ps10962',
@@ -48,28 +51,22 @@ const Flatlist = () => {
         setSuaLop(itemSV.lop);
         setEditDialog(true);
     }
-    const EditSV = () => {
-        const suaSVDialog = () => {
-            SinhVien.forEach(sv => {
-                if (sv.maSV == SuaMaSV) {
-                    sv.ten = SuaTen;
-                    sv.lop = SuaLop;
-                    // setSinhVien([...SinhVien, { maSV: SuaMaSV, ten: SuaTen, tuoi: SuaTuoi, lop: SuaLop }]);
-                    setEditDialog(false);
-                }
-            });
 
-        }
-        return (
-            <View style={styles.EditSV}>
-                <Text>Sua Sinh Vien</Text>
-                <TextInput style={styles.inputType} value={SuaMaSV} placeholder='Ma Sinh vien' editable={false} onChangeText={(msv) => setSuaMaSV(msv)} />
-                <TextInput style={styles.inputType} value={SuaTen} placeholder='Sinh vien' onChangeText={(sv) => setSuaTen(sv)} />
-                <TextInput style={styles.inputType} value={SuaLop} placeholder='Lop' onChangeText={(lop) => setSuaLop(lop)} />
-                <TouchableOpacity onPress={suaSVDialog}><Text>Sua</Text></TouchableOpacity>
-            </View>
-        )
+    //chen vao day
+
+    const suaSVDialog = () => {
+        SinhVien.forEach(sv => {
+            if (sv.maSV == SuaMaSV) {
+                sv.ten = SuaTen;
+                sv.lop = SuaLop;
+                // setSinhVien([...SinhVien, { maSV: SuaMaSV, ten: SuaTen, tuoi: SuaTuoi, lop: SuaLop }]);
+                setEditDialog(false);
+            }
+        });
+
     }
+
+
     //tao list item hoc sinh 
     const ListItem = (props) => {
         const swipeoutSettings = {
@@ -85,6 +82,7 @@ const Flatlist = () => {
                     text: 'Update',
                     type: 'secondary',
                     onPress: () => {
+                        suaSV(props.item);
                         console.log('Update');
                     }
                 },
@@ -92,8 +90,10 @@ const Flatlist = () => {
                     text: 'Delete',
                     type: 'delete',
                     onPress: () => {
+                        xoaSV(props.item.maSV);
                         console.log('Delete');
                     }
+
                 }
 
             ]
@@ -137,7 +137,15 @@ const Flatlist = () => {
                 } />
             {
                 EditDialog && (
-                    <EditSV />
+                   
+                        <View style={styles.EditSV}>
+                            <Text>Sua Sinh Vien</Text>
+                            <TextInput style={styles.inputType} value={SuaMaSV} placeholder='Ma Sinh vien' editable={false} onChangeText={(msv) => setSuaMaSV(msv)} />
+                            <TextInput style={styles.inputType} value={SuaTen} placeholder='Sinh vien' onChangeText={(sv) => setSuaTen(sv)} />
+                            <TextInput style={styles.inputType} value={SuaLop} placeholder='Lop' onChangeText={(lop) => setSuaLop(lop)} />
+                            <TouchableOpacity onPress={suaSVDialog}><Text>Sua</Text></TouchableOpacity>
+                        </View>
+                    
                 )
             }
 
@@ -159,12 +167,12 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         margin: 5,
         height: 30,
-        padding:5,
+        padding: 5,
         backgroundColor: '#fffc46',
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
-        borderRadius:5,
+        borderRadius: 5,
     },
     button: {
         borderWidth: 1,
@@ -191,9 +199,9 @@ const styles = StyleSheet.create({
         margin: width * 3.6 / 187.5,
         padding: width * 3.6 / 187.5,
         borderRadius: width * 3.6 / 187.5,
-        width:'100%'
+        width: '100%'
     },
     itemSinhVien: {
-        marginLeft: 10, 
+        marginLeft: 10,
     },
 })
